@@ -1,9 +1,6 @@
 package com.nrt.redis.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,4 +19,7 @@ public class Driver implements Serializable {
     private String lastName;
     private String email;
     private String phone;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_location_id",referencedColumnName = "id")
+    private ExactLocation exactLocation;
 }
